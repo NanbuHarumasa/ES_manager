@@ -2,26 +2,25 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>さぷーアプリ</title>
+        <title>エントリーシート管理システム</title>
         <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     </head>
     <body>
-        <h1>sapoo books</h1>
-        <h2>new book list</h2>
-        {% if books == [] %}
-            <p>new book information is not yet</p>
+        <h1>エントリーシート管理システム</h1>
+        {% if entry_sheet == [] %}
+            <p>登録されたESはありません</p>
         {% else %}
             <table border="1">
                 <tr>
-                    <th>arrival_day</th>
-                    <th>title</th>
-                    <th>money</th>
+                    <th>企業名</th>
+                    <th>問題</th>
+                    <th>ESのテーマ</th>
                 </tr>
-                {% for book in books%}
+                {% for es in entry_sheet%}
                     <tr>
-                        <td>{{book.arrival_day}}</td>
-                        <td>{{book.title}}</td>
-                        <td>{{book.price}} EN</td>
+                        <td>{{es.company}}</td>
+                        <td>{{es.problem}}</td>
+                        <td>{{es.theme}} EN</td>
                     </tr>
                 {% endfor %}
             </table>

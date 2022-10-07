@@ -7,27 +7,18 @@ DATABASE = "database.db"
 @app.route('/')
 def index():
     con = sqlite3.connect(DATABASE)
-    db_books = con.execute("SELECT * FROM books").fetchall()
+    db_books = con.execute("SELECT * FROM es_record").fetchall()
     con.close()
     
-    books = []
+    entry_sheet = []
+
     for row in db_books:
-        books.append({"title" : row[0], "price": row[1], "arrival_day":row[2]})
-    
-    """
-    books = [{"title": "hugryWarm",
-            "price": 1100,
-            "arrival_day": "2020/7/12"},
-            {"title": "guri",
-            "price": 600,
-            "arrival_day": "2020/7/13"}
-    ]
-    books = []
-    """
-            
+        entry_sheet.append({"company" : row[0], "problem": row[1], "theme":row[2]})
+
+
     return render_template(
         "index.html",
-        books=books
+        entry_sheet = entry_sheet
     )
     
 @app.route("/form")
@@ -38,13 +29,13 @@ def form():
     
 @app.route("/register", methods=["POST"])
 def register():
-    title = request.form["title"]
-    price = request.form["price"]
-    arrival_day = request.form["arrival_day"]
+    company = request.form["company"]
+    problem = request.form["problem"]
+    theme = request.form["theme"]
     
     con = sqlite3.connect(DATABASE)
-    con.execute("INSERT INTO books VALUES(?,?,?)", 
-                [title, price, arrival_day])
+    con.execute("INSERT INTO es_record VALUES(?,?,?)", 
+                [company, problem, theme])
     con.commit()
     con.close()
     return redirect(url_for("index"))

@@ -2,26 +2,25 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>さぷーアプリ2</title>
+        <title>登録画面</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     </head>
     <body>
-        <h1>spoo books</h1>
-        <p>new screen</p>
+        <h1>エントリーシート管理システム</h1>
+        <h2>ここに書き込んでください</h2>
         <form method="post" action="{{url_for('register')}}">
             <table border="1">
                 <tr>
-                    <th>arrival_day</th>
-                    <th>title</th>
-                    <th>money</th>
+                    <th>企業名</th>
+                    <th>問題</th>
+                    <th>ESのテーマ</th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="arrival_day"></td>
-                    <td><input type="text" name="title"></td>
-                    <td><input type="text" name="price"></td>                     
+                    <td><input type="text" name="company"></td>
+                    <td><input type="text" name="problem"></td>
+                    <td><input type="text" name="theme"></td>                     
                 </tr>
             </table>
             <br>
-            <input type="submit", value="登録">
+            <input type="submit", value="エントリーシートを登録">
         </form>
-    </body>
-</html>

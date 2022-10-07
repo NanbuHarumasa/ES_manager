@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>さぷーアプリ</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <h1>sapoo books</h1>
+        <h2>new book list</h2>
+        {% if books == [] %}
+            <p>new book information is not yet</p>
+        {% else %}
+            <table border="1">
+                <tr>
+                    <th>arrival_day</th>
+                    <th>title</th>
+                    <th>money</th>
+                </tr>
+                {% for book in books%}
+                    <tr>
+                        <td>{{book.arrival_day}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.price}} EN</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+        <a href="{{url_for('form')}}">edit</a>
+    </body>
+
+</html>
